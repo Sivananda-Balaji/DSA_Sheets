@@ -1,25 +1,19 @@
 //Sort an array
 
 var sortColors = function (nums) {
-  let zero = 0,
-    one = 0,
-    two = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === 0) {
-      zero++;
-    } else if (nums[i] === 1) {
-      one++;
+  let low = 0,
+    mid = 0,
+    high = nums.length - 1;
+  while (mid <= high) {
+    if (nums[mid] === 0) {
+      [nums[low], nums[mid]] = [nums[mid], nums[low]];
+      low++;
+      mid++;
+    } else if (nums[mid] === 1) {
+      mid++;
     } else {
-      two++;
-    }
-  }
-  for (let i = 0; i < nums.length; i++) {
-    if (i < zero) {
-      nums[i] = 0;
-    } else if (i < zero + one) {
-      nums[i] = 1;
-    } else {
-      nums[i] = 2;
+      [nums[mid], nums[high]] = [nums[high], nums[mid]];
+      high--;
     }
   }
   return nums;
