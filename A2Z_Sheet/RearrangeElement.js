@@ -1,22 +1,17 @@
 //2149. Rearrange Array Elements by Sign
 
 var rearrangeArray = function (nums) {
-  const positive = [];
-  const negative = [];
+  const answer = [];
+  let pos = 0,
+    neg = 1;
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] > 0) {
-      positive.push(nums[i]);
+      answer[pos] = nums[i];
+      pos += 2;
     } else {
-      negative.push(nums[i]);
+      answer[neg] = nums[i];
+      neg += 2;
     }
-  }
-  const answer = [];
-  let i = 0,
-    index = 0;
-  while (i < positive.length && i < negative.length) {
-    answer[index++] = positive[i];
-    answer[index++] = negative[i];
-    i++;
   }
   return answer;
 };
