@@ -5,20 +5,17 @@ var longestConsecutive = function (nums) {
     return 0;
   }
   nums.sort((a, b) => a - b);
-  let count = 0,
-    minValue = -Infinity,
-    longest = 1;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] - 1 === minValue) {
+  let count = 1,
+    max = -Infinity;
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (nums[i] + 1 === nums[i + 1]) {
       count++;
-      minValue = nums[i];
-    } else if (nums[i] !== minValue) {
+    } else if (nums[i] !== nums[i + 1]) {
       count = 1;
-      minValue = nums[i];
     }
-    longest = Math.max(count, longest);
+    max = Math.max(count, max);
   }
-  return longest;
+  return max === -Infinity ? 1 : max;
 };
 
 const nums = [1, 0, 1, 2];
