@@ -1,16 +1,14 @@
 //Remove duplicates from sorted array
 
 function removeDuplicates(nums) {
-  const distinctArr = [];
-  for (let i = 0; i < nums.length; i++) {
-    if (distinctArr.at(-1) !== nums[i]) {
-      distinctArr.push(nums[i]);
+  let index = 0;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[index] !== nums[i]) {
+      nums[index + 1] = nums[i];
+      index++;
     }
   }
-  for (let i = 0; i < distinctArr.length; i++) {
-    nums[i] = distinctArr[i];
-  }
-  return distinctArr.length;
+  return index + 1;
 }
 
 const nums = [0, 0, 3, 3, 5, 6];
