@@ -1,14 +1,17 @@
 //560. Subarray Sum Equals K
 
 var subarraySum = function (nums, k) {
-  let count = 0;
+  let prefix = 0,
+    count = 0;
+  const map = { 0: 1 };
   for (let i = 0; i < nums.length; i++) {
-    let sum = 0;
-    for (let j = i; j < nums.length; j++) {
-      sum += nums[j];
-      if (sum === k) {
-        count++;
-      }
+    prefix += nums[i];
+    const remain = prefix - k;
+    count += map[remain] >= 0 ? map[remain] : 0;
+    if (map[prefix] !== undefined && map[prefix] >= 0) {
+      map[prefix]++;
+    } else {
+      map[prefix] = 1;
     }
   }
   return count;
