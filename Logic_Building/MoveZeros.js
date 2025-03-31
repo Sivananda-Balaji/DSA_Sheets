@@ -1,14 +1,20 @@
 //Move Zeros to End
 
 function moveZeroes(nums) {
-  const newNums = [];
+  let zero = -1;
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== 0) {
-      newNums.push(nums[i]);
+    if (nums[i] === 0) {
+      zero = i;
+      break;
     }
   }
-  for (let i = 0; i < nums.length; i++) {
-    nums[i] = newNums[i] || 0;
+  if (zero >= 0) {
+    for (let i = zero + 1; i < nums.length; i++) {
+      if (nums[i] !== 0) {
+        [nums[zero], nums[i]] = [nums[i], nums[zero]];
+        zero++;
+      }
+    }
   }
   return nums;
 }
