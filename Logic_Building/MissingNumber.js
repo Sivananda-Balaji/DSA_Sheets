@@ -1,13 +1,15 @@
 //Find missing number
 
 function missingNumber(nums) {
-  let i = 0;
-  for (i = 0; i < nums.length; i++) {
-    if (!nums.includes(i)) {
-      return i;
-    }
+  let prefixSum = 0;
+  for (let i = 1; i <= nums.length; i++) {
+    prefixSum += i;
   }
-  return i;
+  let total = 0;
+  for (let i = 0; i < nums.length; i++) {
+    total += nums[i];
+  }
+  return prefixSum - total;
 }
 
 const nums = [0, 2, 3, 1, 4];
