@@ -1,17 +1,14 @@
 //Pascal's Triangle I
 
 function pascalTriangleI(r, c) {
-  const ans = [];
-  for (let i = 1; i <= r; i++) {
-    ans.push(new Array(i).fill(1));
+  r = r - 1;
+  c = c - 1;
+  let ans = 1;
+  for (let i = 0; i < c; i++) {
+    ans *= r - i;
+    ans /= i + 1;
   }
-  for (let i = 1; i < ans.length - 1; i++) {
-    for (let j = 0; j < ans[i].length - 1; j++) {
-      const value = ans[i][j] + ans[i][j + 1];
-      ans[i + 1][j + 1] = value;
-    }
-  }
-  return ans[r - 1][c - 1];
+  return ans;
 }
 
 const r = 4,
