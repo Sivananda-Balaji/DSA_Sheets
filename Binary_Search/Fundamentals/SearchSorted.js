@@ -3,17 +3,21 @@
 function search(nums, target) {
   let left = 0,
     right = nums.length - 1;
-  while (left <= right) {
+  const binSearch = (nums, left, right, target) => {
+    if (left > right) {
+      return -1;
+    }
     const mid = Math.floor((left + right) / 2);
     if (nums[mid] === target) {
       return mid;
     } else if (nums[mid] < target) {
-      left = mid + 1;
+      return binSearch(nums, mid + 1, right, target);
     } else {
-      right = mid - 1;
+      return binSearch(nums, left, mid - 1, target);
     }
-  }
-  return -1;
+  };
+  const ans = binSearch(nums, left, right, target);
+  return ans;
 }
 
 const nums = [-1, 0, 3, 5, 9, 12],
