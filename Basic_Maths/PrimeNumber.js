@@ -5,7 +5,7 @@ function isPrime(n) {
   if (n < 2) {
     return false;
   }
-  for (let i = 2; i < n; i++) {
+  for (let i = 2; i * i <= n; i++) {
     if (n % i === 0) {
       return false;
     }
@@ -13,6 +13,6 @@ function isPrime(n) {
   return true;
 }
 
-const result = isPrime(5);
+const result = isPrime(49);
 
 console.log(result);
