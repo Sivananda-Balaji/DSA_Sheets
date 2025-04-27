@@ -3,7 +3,7 @@
 function reverseString(s) {
   //your code goes here
   const helper = (first, s, last) => {
-    if (first === last) {
+    if (first >= last) {
       return s;
     }
     [s[first], s[last]] = [s[last], s[first]];
