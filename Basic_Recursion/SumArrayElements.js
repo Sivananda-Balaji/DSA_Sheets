@@ -2,14 +2,14 @@
 
 function arraySum(nums) {
   //your code goes here
-  const arraySumfn = (sum, nums, last) => {
-    if (nums.length === 0) {
-      return sum + last;
+  const helper = (sum, nums, index) => {
+    if (index === nums.length - 1) {
+      return sum + nums[index];
     }
-    sum += last;
-    return arraySumfn(sum, nums, nums.pop());
+    sum += nums[index];
+    return helper(sum, nums, ++index);
   };
-  const ans = arraySumfn(0, nums, nums.pop());
+  const ans = helper(0, nums, 0);
   return ans;
 }
 
