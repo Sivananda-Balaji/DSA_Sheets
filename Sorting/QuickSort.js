@@ -17,7 +17,7 @@ function partition(nums, left, right) {
 }
 
 function quickSorting(nums, left, right) {
-  if (left <= right) {
+  if (left < right) {
     const pivotIndex = partition(nums, left, right);
     quickSorting(nums, left, pivotIndex - 1);
     quickSorting(nums, pivotIndex + 1, right);
