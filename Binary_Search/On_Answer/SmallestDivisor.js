@@ -2,15 +2,23 @@
 
 function smallestDivisor(nums, limit) {
   const max = Math.max(...nums);
-  for (let i = 1; i <= max; i++) {
+  let left = 1,
+    right = max,
+    ans = -1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
     let val = 0;
-    for (let j = 0; j < nums.length; j++) {
-      val += Math.ceil(nums[j] / i);
+    for (let i = 0; i < nums.length; i++) {
+      val += Math.ceil(nums[i] / mid);
     }
     if (val <= limit) {
-      return i;
+      ans = mid;
+      right = mid - 1;
+    } else {
+      left = mid + 1;
     }
   }
+  return ans;
 }
 
 const nums = [1, 2, 3, 4, 5],
