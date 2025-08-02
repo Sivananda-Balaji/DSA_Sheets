@@ -2,11 +2,17 @@
 
 function maxProduct(nums) {
   let max = -Infinity;
-  for (let i = 0; i < nums.length; i++) {
-    let prod = 1;
-    for (let j = i; j < nums.length; j++) {
-      prod *= nums[j];
-      max = Math.max(max, prod);
+  let pre = 1,
+    post = 1;
+  for (let i = 0, j = nums.length - 1; i < nums.length, j >= 0; i++, j--) {
+    pre *= nums[i];
+    post *= nums[j];
+    max = Math.max(max, Math.max(pre, post));
+    if (pre === 0) {
+      pre = 1;
+    }
+    if (post === 0) {
+      post = 1;
     }
   }
   return max;
